@@ -4,13 +4,14 @@ import matplotlib.pyplot as plt
 
 # Lendo o arquivo CSV
 df = pd.read_csv(
-    'C:/Projects/PUC/6p/conversorDate/repositorios.csv', delimiter=';')
+    'C:/Projects/PUC/6p/LAB6-T1/ScriptsCalculos/repositorios.csv', delimiter=';')
 
 # Filtrando os dados para a linguagem primária TypeScript
 df_python = df[df["PrimaryLanguage"] == "Python"]
 
 # Calculando a mediana de pull requests aceitas para a linguagem TypeScript
 AcceptedPullRequestsPY = df_python["AcceptedPullRequests"].median()
+PullRequestsPY = df_python["PullRequests"].median()
 
 # Calcula a mediana de releases em TS
 releasesPY = df_python["Releases"].median()
@@ -28,7 +29,8 @@ df_python['updatedTime'] = (hoje - df_python['updatedAt'].dt.date).dt.days
 # Calcula a mediana da idade e da idade de atualização de todas as linhas
 mediana_updatedTimePY = df_python['updatedTime'].median()
 
-print("A mediana da total de pull requests é para a linguagem Python", AcceptedPullRequestsPY)
+print("A mediana da total de pull requests aceitas é para a linguagem Python", AcceptedPullRequestsPY)
+print("A mediana da total de pull requests é para a linguagem Python", PullRequestsPY)
 print("Mediana de releases a linguagem Python:", releasesPY)
 print(f"A mediana do tempo de atualização é {mediana_updatedTimePY} dias para a linguagem Python")
 
